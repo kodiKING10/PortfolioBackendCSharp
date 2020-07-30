@@ -42,9 +42,10 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
             List<Certificate> listCertificates = new List<Certificate>();
-            string strQuery = "SELECT * FROM Certificate WHERE ID = " + id;
+            StringBuilder strQuery = new StringBuilder("SELECT * FROM Certificate");
+            strQuery.Append(" WHERE ID = " + id);
 
-            SqlDataReader data = conn.ExecuteWithReturn(strQuery);
+            SqlDataReader data = conn.ExecuteWithReturn(strQuery.ToString());
 
             while (data.Read())
             {
@@ -69,15 +70,15 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
 
-            string strQuery = string.Format("INSERT INTO Certificate( Institution, CourseName, Date, Description, Image ) VALUES('{0}','{1}','{2}','{3}','{4}')",
+            StringBuilder strQuery = new StringBuilder("INSERT INTO Certificate( Institution, CourseName, Date, Description, Image )");
+            strQuery.Append(string.Format(" VALUES('{0}','{1}','{2}','{3}','{4}')",
                 certificate.Institution,
                 certificate.CourseName,
                 certificate.Date.ToString("MM/dd/yyyy"),
                 certificate.Description,
-                certificate.Image
-            );
+                certificate.Image));
 
-            conn.ExecuteWithoutReturn(strQuery);
+            conn.ExecuteWithoutReturn(strQuery.ToString());
 
             return "Certificate inserted successfully!";
         }
@@ -91,9 +92,10 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
             List<Certificate> listCertificates = new List<Certificate>();
-            string strQuery = "DELETE FROM Certificate WHERE ID = " + id;
+            StringBuilder strQuery = new StringBuilder("DELETE FROM Certificate");
+            strQuery.Append(" WHERE ID = " + id);
 
-            conn.ExecuteWithoutReturn(strQuery);
+            conn.ExecuteWithoutReturn(strQuery.ToString());
 
             return "Certificate deleted successfully!";
         }
@@ -107,16 +109,16 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
 
-            string strQuery = string.Format("UPDATE Certificate SET Institution = '{0}', CourseName = '{1}', Date = '{2}', Description = '{3}', Image = '{4}' WHERE ID = '{5}'",
+            StringBuilder strQuery = new StringBuilder("UPDATE Certificate");
+            strQuery.Append(string.Format(" SET Institution = '{0}', CourseName = '{1}', Date = '{2}', Description = '{3}', Image = '{4}' WHERE ID = '{5}'",
                 certificate.Institution,
                 certificate.CourseName,
                 certificate.Date.ToString("MM/dd/yyyy"),
                 certificate.Description,
                 certificate.Image,
-                id
-            );
+                id));
 
-            conn.ExecuteWithoutReturn(strQuery);
+            conn.ExecuteWithoutReturn(strQuery.ToString());
 
             return "Certificate with ID "+ id +" updated successfully!";
         }
