@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PortfolioBackendCSharp.DAL;
 using PortfolioBackendCSharp.Models;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace PortfolioBackendCSharp.Controllers
 {

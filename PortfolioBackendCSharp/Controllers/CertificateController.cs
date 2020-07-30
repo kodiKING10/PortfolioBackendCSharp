@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PortfolioBackendCSharp.DAL;
 using PortfolioBackendCSharp.Models;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace PortfolioBackendCSharp.Controllers
 {
@@ -18,9 +18,9 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
             List<Certificate> listCertificates = new List<Certificate>();
-            string strQuery = "SELECT * FROM Certificate";
+            StringBuilder strQuery = new StringBuilder("SELECT * FROM Certificate");
 
-            SqlDataReader data = conn.ExecuteWithReturn(strQuery);
+            SqlDataReader data = conn.ExecuteWithReturn(strQuery.ToString());
 
             while (data.Read())
             {
