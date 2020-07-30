@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,9 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
             List<Skill> listSkill = new List<Skill>();
-            string strQuery = "SELECT * FROM Skill";
+            StringBuilder strQuery = new StringBuilder("SELECT * FROM Skill");
 
-            SqlDataReader data = conn.ExecuteWithReturn(strQuery);
+            SqlDataReader data = conn.ExecuteWithReturn(strQuery.ToString());
 
             while (data.Read())
             {
@@ -42,9 +43,11 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
             List<Skill> listSkill = new List<Skill>();
-            string strQuery = "SELECT * FROM Skill WHERE ID = " + id;
 
-            SqlDataReader data = conn.ExecuteWithReturn(strQuery);
+            StringBuilder strQuery = new StringBuilder("SELECT * FROM Skill");
+            strQuery.Append(" WHERE ID = " + id);
+
+            SqlDataReader data = conn.ExecuteWithReturn(strQuery.ToString());
 
             while (data.Read())
             {
@@ -66,11 +69,12 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
 
-            string strQuery = string.Format("INSERT INTO Skill( SkillName, Percentage ) VALUES('{0}','{1}')",
+            StringBuilder strQuery = new StringBuilder(string.Format("INSERT INTO Skill( SkillName, Percentage )"));
+            strQuery.Append(string.Format(" VALUES('{0}','{1}')",
                 skill.SkillName,
-                skill.Percentage
-            );
-            conn.ExecuteWithoutReturn(strQuery);
+                skill.Percentage));
+
+            conn.ExecuteWithoutReturn(strQuery.ToString());
 
             return "Skill inserted successfully!";
         }
@@ -84,9 +88,10 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
             List<Skill> listSkill = new List<Skill>();
-            string strQuery = "DELETE FROM Skill WHERE ID = " + id;
+            StringBuilder strQuery = new StringBuilder("DELETE FROM Skill");
+            strQuery.Append(" WHERE ID = " + id);
 
-            conn.ExecuteWithoutReturn(strQuery);
+            conn.ExecuteWithoutReturn(strQuery.ToString());
 
             return "Skill deleted successfully!";
         }
@@ -100,13 +105,13 @@ namespace PortfolioBackendCSharp.Controllers
         {
             Connection conn = new Connection();
 
-            string strQuery = string.Format("UPDATE Skill SET SkillName = '{0}', Percentage = '{1}' WHERE ID = '{2}'",
+            StringBuilder strQuery = new StringBuilder("UPDATE Skill");
+            strQuery.Append(string.Format(" SET SkillName = '{0}', Percentage = '{1}' WHERE ID = '{2}'",
                 skill.SkillName,
                 skill.Percentage,
-                id
-            );
-
-            conn.ExecuteWithoutReturn(strQuery);
+                id));
+                
+            conn.ExecuteWithoutReturn(strQuery.ToString());
 
             return "Skill with ID " + id + " updated successfully!";
         }
