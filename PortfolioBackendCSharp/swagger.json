@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a RESTful API created for learning and professional reasons, here you can find some details of the technologies that were used aswell of instructions on how to use the API in case you want to test it. You can find out more about Swagger at http://swagger.io or on irc.freenode.net, #swagger.",
+    "version": "1.2.5",
+    "title": "API - Henrique C Veiga / Portfolio",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "hencavalcante99@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://www.opensource.org/licenses/MIT"
+    }
+  },
+
+  "host": "https://localhost:44354/",
+  "basePath": "",
+
+  "schemes": [
+    "https",
+    "http"
+  ],
+
+  "paths": {
+    "/skills": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Returns all my skills",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Skills"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "object"
+            },
+            "name": "body",
+            "in": "body",
+            "description": "Type the values in JSON format",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Insert a skill",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Skills"
+            }
+          }
+        }
+      }
+    },
+    "/skills/{ID}": {
+
+      "get": {
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of skill to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Returns one skill",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Skills"
+            }
+          },
+          "204": {
+            "description": "Skill not found"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID that will be updated",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "schema": {
+              "type": "object"
+            },
+            "name": "body",
+            "in": "body",
+            "description": "Insert the values in JSON format",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Updates a skill in the system",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Skills"
+            }
+          },
+          "204": {
+            "description": "Skill not found"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of skill to delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Deletes skill with given ID",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Skills"
+            }
+          },
+          "204": {
+            "description": "Skill not found"
+          }
+        }
+      }
+    },
+
+    "/certificate": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Returns all of my certificates",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Certificate"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "object"
+            },
+            "name": "body",
+            "in": "body",
+            "description": "Type the values in JSON format",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Insert a certificate",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Certificate"
+            }
+          }
+        }
+      }
+    },
+    "/certificate/{ID}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of certificate to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Returns one certificate",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Skills"
+            }
+          },
+          "204": {
+            "description": "Skill not found"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID that will be updated",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "schema": {
+              "type": "object"
+            },
+            "name": "body",
+            "in": "body",
+            "description": "Insert the values in JSON format",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Updates a certificate in the system",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Certificate"
+            }
+          },
+          "204": {
+            "description": "Certificate not found"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of certificate to delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Deletes certificate with given ID",
+        "responses": {
+          "200": {
+            "description": "If all goes well, it should look like this.",
+            "schema": {
+              "$ref": "#/definitions/Certificate"
+            }
+          },
+          "204": {
+            "description": "Certificate not found"
+          }
+        }
+      }
+    }
+  },
+
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+
+  "definitions": {
+    "Skills": {
+      "type": "object",
+      "properties": {
+        "SkillName": {
+          "type": "string"
+        },
+        "Percentage": {
+          "type": "integer"
+        }
+      }
+    },
+    "Certificate": {
+      "type": "object",
+      "properties": {
+        "Institution": {
+          "type": "string"
+        },
+        "CourseName": {
+          "type": "string"
+        },
+        "Date": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "Image": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
